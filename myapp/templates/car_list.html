@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container cars">
+    <h2>Choose Your Car</h2>
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-md-4">
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <p>{{ car.description }}</p>
+                <form action="{% url 'collection_list' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="car_id" value="{{ car.id }}">
+                    <button type="submit" class="btn-custom">Confirm</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

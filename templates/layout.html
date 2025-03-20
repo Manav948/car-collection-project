@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Car Collections{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Body Background with Neon Effect */
+        body {
+            background:black;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00C9A7 !important;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #00C9A7, #ff416c);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .btn-hero {
+            margin-top: 20px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .btn-hero:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            transform: scale(1.1);
+        }
+
+        /* Car Collection Section */
+        .cars {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .car-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 201, 167, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+
+        .car-card h3 {
+            color: #00C9A7;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            margin-top: 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        }
+
+        /* Footer */
+        .footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+        }
+
+        .footer p:hover {
+            cursor: pointer;
+            color: #ffdd57;
+            transition: all 0.3s ease;
+        }
+
+        .car-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 201, 167, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Image Styling */
+        .car-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Button */
+        .btn-custom {
+            margin-top: 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        }
+
+        .car-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 201, 167, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Image Styling */
+        .car-card img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Car Elegance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{%url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{%url 'car_list' %}">Cars</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{%url 'order_page'%}">Order</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{%url 'manage_order'%}">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Luxury Cars Await</h1>
+        <p>Explore a collection of the world's most powerful and luxurious supercars.</p>
+        <a href="#car-section" class="btn-hero">Discover Now</a>
+    </div>
+
+    <!-- Car Collection Section -->
+    <div class="container cars" id="car-section">
+        {% block content %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="car-card">
+                    <h3>Ferrari 488</h3>
+                    <p>Luxury and speed combined.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <h3>Lamborghini Aventador</h3>
+                    <p>Ultimate power on the road.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <h3>Bugatti Chiron</h3>
+                    <p>The king of hypercars.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Car Collections. All rights reserved.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

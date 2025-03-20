@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% load static %}  <!-- Load static files -->
+
+{% block content %}
+    <!-- Car Collection Section -->
+    <div class="container cars">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="{% static 'images/ferrari.jpg' %}" alt="Ferrari 488">
+                    <h3>Ferrari 488</h3>
+                    <p>Luxury and speed combined.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="{% static 'images/lamborgini.jpg' %}" alt="Lamborghini Aventador">
+                    <h3>Lamborghini Aventador</h3>
+                    <p>Ultimate power on the road.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-card">
+                    <img src="{% static 'images/audi1.jpg' %}" alt="Bugatti Chiron">
+                    <h3>Audi</h3>
+                    <p>The king of hypercars.</p>
+                    <a href="#" class="btn-custom">Explore</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

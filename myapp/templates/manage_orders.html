@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121212; /* Dark Mode */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #00C9A7; /* Cool Green Accent */
+        }
+
+        .orders-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        .order-card {
+            background: #1E1E1E;
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 201, 167, 0.3);
+            transition: 0.3s;
+        }
+
+        .order-card:hover {
+            transform: scale(1.05);
+        }
+
+        .car-name {
+            padding: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFC857; /* Gold Accent */
+        }
+
+        .customer {
+            padding: 5px;
+            font-size: 18px;
+            margin: 10px 0;
+            color: #E0E0E0;
+        }
+
+        .status {
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            width: fit-content;
+        }
+
+        .status-confirmed {
+            background: #00C9A7;
+            color: #121212;
+        }
+
+        .status-cancelled {
+            background: #E63946;
+            color: white;
+        }
+
+        .actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-confirm {
+            background: #00C9A7;
+            color: #121212;
+        }
+
+        .btn-confirm:hover {
+            background: #009b7d;
+        }
+
+        .btn-cancel {
+            background: #E63946;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #b02a37;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Order Management</h1>
+
+    <div class="orders-container">
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="car-name">Car Name:  {{ order.car_name }}</div>
+            <div class="customer">Customer:  {{ order.customer.name }}</div>
+            <div class="status {% if order.status == 'confirmed' %}status-confirmed{% else %}status-cancelled{% endif %}">
+                {{ order.status|title }}
+            </div>
+            <div class="actions">
+                <a href="{% url 'update_order' order.id 'confirmed' %}" class="btn btn-confirm">Confirm</a>
+                <a href="{% url 'update_order' order.id 'cancelled' %}" class="btn btn-cancel">Cancel</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No orders available</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

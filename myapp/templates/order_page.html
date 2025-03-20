@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Order Confirmation</h2>
+    <p>{{ message }}</p>
+
+    {% if selected_car %}
+    <div class="selected-car">
+        <img src="{{ selected_car.image.url }}" alt="{{ selected_car.name }}">
+        <h3>{{ selected_car.name }}</h3>
+        <p>{{ selected_car.description }}</p>
+    </div>
+    {% else %}
+    <p>No car selected.</p>
+    {% endif %}
+
+    <h3>Order Details</h3>
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p><strong>Customer Name:</strong> {{ order.customer.name }}</p>
+    <p><strong>Car Ordered:</strong> {{ order.car_name }}</p>
+</div>
+{% endblock %}
